@@ -27,7 +27,7 @@ deploy:
   provider: script
   script: bash ./deploy.sh
   on: 
-    branch: master
+    branch: main
 
 # after_success:
 #   - docker build -t sriraj14/multi-client ./client
