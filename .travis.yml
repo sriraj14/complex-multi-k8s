@@ -23,15 +23,23 @@ before_install:
 script:
   - docker run -e CI=true sriraj14/react-test npm test
 
-after_script:
-  provider: script
-  script: bash ./tag-push.sh
-  on:
-    bransh: main
-
 deploy:
   provider: script
   script: bash ./deploy.sh
   on: 
     branch: main
+
+# after_success:
+#   - docker build -t sriraj14/multi-client ./client
+#   - docker build -t sriraj14/multi-nginx ./nginx
+#   - docker build -t sriraj14/multi-server ./server
+#   - docker build -t sriraj14/multi-worker ./worker
+#   # Log in to the docker CLI
+#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#   # Take those images and push them to docker hub
+#   - docker push sriraj14/multi-client
+#   - docker push sriraj14/multi-nginx
+#   - docker push sriraj14/multi-server
+#   - docker push sriraj14/multi-worker
+
 
